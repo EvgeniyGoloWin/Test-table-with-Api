@@ -1,0 +1,14 @@
+.table {
+    display: table;
+    width: 100%;
+}
+
+.item_table {
+    display: table-row;
+}
+
+.cell {
+    display: table-cell;
+    border: 1px solid black;
+    padding: 10px;
+}
