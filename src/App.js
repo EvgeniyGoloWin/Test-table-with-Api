@@ -8,6 +8,7 @@ import './App.css';
 
 export default function App() {
     const [data, setData] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const baseUrl = "http://www.filltext.com";
     const url = `${baseUrl}/?rows=10&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`;
 
@@ -82,27 +83,27 @@ export default function App() {
             </tr>
             </thead>
             <tbody>
-            {data.map((item) => (
-                <tr className="item_table" key={item.id + item.firstName}>
-                    <td className="cell">{item.id}</td>
-                    <td className="cell">{item.firstName}</td>
-                    <td className="cell">{item.lastName}</td>
-                    <td className="cell">{item.email}</td>
-                    <td className="cell">{item.phone}</td>
-                    <td className="cell">
-                        {item.address.streetAddress}, {item.address.city}, {item.address.state},{" "}
-                        {item.address.zip}
-                    </td>
-                </tr>
-            ))}
+            {data
+                .filter(item => item.firstName.toLowerCase().includes(searchTerm.toLowerCase()) || item.lastName.toLowerCase().includes(searchTerm.toLowerCase()) || item.email.toLowerCase().includes(searchTerm.toLowerCase()) || item.phone.toLowerCase().includes(searchTerm.toLowerCase()))
+                .map((item) => (<tr className="item_table" key={item.id + item.firstName}>
+                        <td className="cell">{item.id}</td>
+                        <td className="cell">{item.firstName}</td>
+                        <td className="cell">{item.lastName}</td>
+                        <td className="cell">{item.email}</td>
+                        <td className="cell">{item.phone}</td>
+                        <td className="cell">
+                            {item.address.streetAddress}, {item.address.city}, {item.address.state},{" "}
+                            {item.address.zip}
+                        </td>
+                    </tr>))}
             </tbody>
-            {/*<input*/}
-            {/*    value={searchTerm}*/}
-            {/*    autoFocus*/}
-            {/*    type='text'*/}
-            {/*    placeholder='search'*/}
-            {/*    onChange={(e) => setSearchTerm(e.target.value)}*/}
-            {/*/>*/}
+            <input
+                value={searchTerm}
+                autoFocus
+                type='text'
+                placeholder='search'
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
         </table>
     );
 }
