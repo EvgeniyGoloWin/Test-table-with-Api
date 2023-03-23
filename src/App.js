@@ -73,14 +73,6 @@ export default function App() {
 
     return (
         <>
-            <input
-                value={searchTerm}
-                autoFocus
-                type='text'
-                placeholder='search'
-                onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <h3>Current page {page}</h3>
             <table className="table">
                 <thead>
                 <tr>
@@ -111,9 +103,19 @@ export default function App() {
                     </tr>))}
                 </tbody>
             </table>
-            <Stack>
-                <Pagination count={10} color="primary" onChange={handlePagination}/>
-            </Stack>
+            {/*<h3>Current page {page}</h3>*/}
+            <div className='input'>
+                <Stack>
+                    <Pagination count={10} color="primary" onChange={handlePagination}/>
+                </Stack>
+                <input
+                    value={searchTerm}
+                    autoFocus
+                    type='text'
+                    placeholder='search'
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+            </div>
         </>
     );
 }
