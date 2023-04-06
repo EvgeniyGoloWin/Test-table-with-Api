@@ -73,6 +73,15 @@ export default function App() {
 
     return (
         <>
+            <div className='input_search'>
+            <input
+                value={searchTerm}
+                autoFocus
+                type='text'
+                placeholder='search'
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            </div>
             <table className="table">
                 <thead>
                 <tr>
@@ -104,17 +113,10 @@ export default function App() {
                 </tbody>
             </table>
             {/*<h3>Current page {page}</h3>*/}
-            <div className='input'>
+            <div className='input_pagination'>
                 <Stack>
                     <Pagination count={10} color="primary" onChange={handlePagination}/>
                 </Stack>
-                <input
-                    value={searchTerm}
-                    autoFocus
-                    type='text'
-                    placeholder='search'
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
             </div>
         </>
     );
