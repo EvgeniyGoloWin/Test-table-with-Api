@@ -7,16 +7,18 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 import './App.css';
-import { Link } from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 
 
 export default function SmallData() {
+    const location = useLocation();
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [page, setPage] = useState(1);
     const baseUrl = "http://www.filltext.com";
-    const url = `${baseUrl}/?rows=5&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`;
+    const chooseData = location.pathname === '/big-data' ? 50 : 5
+    const url = `${baseUrl}/?rows=${chooseData}&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`;
     const handlePagination = (e, p) => {
         setPage(p)
         console.log(e, p)
