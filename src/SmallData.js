@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import sortUp from './sort_ascending_icon.png';
-import sortDown from './sort_descending_icon.png'
+import sortDown from './sort_ascending_icon.png';
+import sortUp from './sort_descending_icon.png'
 import back from './back.png'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
@@ -10,15 +10,25 @@ import './App.css';
 import {Link, useLocation} from 'react-router-dom';
 
 
-
 export default function SmallData() {
     const location = useLocation();
+    const [isHiddenId, setIsHiddenId] = useState(false);
+    const [isHiddenFname, setIsHiddenFname] = useState(false);
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [page, setPage] = useState(1);
     const baseUrl = "http://www.filltext.com";
     const chooseData = location.pathname === '/big-data' ? 50 : 5
     const url = `${baseUrl}/?rows=${chooseData}&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`;
+
+    // const handleHide = () => {
+    //     setIsHiddenId(!isHidden);
+    // };
+
+    // const handleShow = () => {
+    //     setIsHidden(false);
+    // };
+
     const handlePagination = (e, p) => {
         setPage(p)
         console.log(e, p)
@@ -36,6 +46,7 @@ export default function SmallData() {
     const sortByFirstNameAscending = () => {
         const sortedData = [...data].sort(compareFirstNameAscending);
         setData(sortedData);
+        setIsHiddenFname(false);
     };
     const compareFirstNameDescending = (a, b) => {
         if (a.firstName < b.firstName) {
@@ -50,8 +61,8 @@ export default function SmallData() {
     const sortByFirstNameDescending = () => {
         const sortedData = [...data].sort(compareFirstNameDescending);
         setData(sortedData);
+        setIsHiddenFname(true);
     };
-
 
     const compareIdAscending = (a, b) => {
         return a.id - b.id;
@@ -59,6 +70,7 @@ export default function SmallData() {
     const sortByIdAscending = () => {
         const sortedData = [...data].sort(compareIdAscending);
         setData(sortedData);
+        setIsHiddenId(false);
     };
 
     const compareIdDescending = (a, b) => {
@@ -66,8 +78,8 @@ export default function SmallData() {
     };
     const sortByIdDescending = () => {
         const sortedData = [...data].sort(compareIdDescending);
-        console.log(sortedData, '2-1')
         setData(sortedData);
+        setIsHiddenId(true);
     };
 
     useEffect(() => {
@@ -91,12 +103,22 @@ export default function SmallData() {
             <table className="table">
                 <thead>
                 <tr>
-                    <th
-                    >Id <img onClick={sortByIdAscending} src={sortUp}/>
-                        <img onClick={sortByIdDescending} src={sortDown}/>
+                    <th>Id {isHiddenId ? (<img onClick={() => {
+                            sortByIdAscending();
+                        }} src={sortUp}/>)
+                        :
+                        (<img onClick={() => {
+                            sortByIdDescending();
+                        }} src={sortDown}/>)}
                     </th>
-                    <th>FirstName <img onClick={sortByFirstNameAscending} src={sortUp}/><img
-                        onClick={sortByFirstNameDescending} src={sortDown}/></th>
+                    <th>FirstName {isHiddenFname ? (<img onClick={() => {
+                        sortByFirstNameAscending();
+                    }} src={sortUp}/>)
+                        :
+                        (<img onClick={() => {
+                            sortByFirstNameDescending();
+                        }} src={sortDown}/>)}
+                    </th>
                     <th>LastName</th>
                     <th>Email</th>
                     <th>Phone</th>
