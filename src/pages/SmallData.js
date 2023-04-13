@@ -1,13 +1,14 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import sortDown from './sort_ascending_icon.png';
-import sortUp from './sort_descending_icon.png'
-import back from './back.png'
+import sortDown from '../assets/icon/sort_ascending_icon.png';
+import sortUp from '../assets/icon/sort_descending_icon.png'
+import back from '../assets/icon/back.png'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
-import './App.css';
 import {Link, useLocation} from 'react-router-dom';
+
+import './data.css';
+
 
 
 export default function SmallData() {
@@ -20,14 +21,6 @@ export default function SmallData() {
     const baseUrl = "http://www.filltext.com";
     const chooseData = location.pathname === '/big-data' ? 50 : 5
     const url = `${baseUrl}/?rows=${chooseData}&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}`;
-
-    // const handleHide = () => {
-    //     setIsHiddenId(!isHidden);
-    // };
-
-    // const handleShow = () => {
-    //     setIsHidden(false);
-    // };
 
     const handlePagination = (e, p) => {
         setPage(p)
@@ -96,7 +89,7 @@ export default function SmallData() {
                     autoFocus
                     type='text'
                     placeholder='search'
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e) => setSearchTerm(e.target.value.trim())}
                 />
             </div>
             <Link to="/"><img src={back}/> back home</Link>
