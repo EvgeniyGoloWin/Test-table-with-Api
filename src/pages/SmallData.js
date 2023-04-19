@@ -1,15 +1,13 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import sortDown from '../assets/icon/sort_ascending_icon.png';
-import sortUp from '../assets/icon/sort_descending_icon.png'
-import back from '../assets/icon/back.png'
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
-import {Link, useLocation} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
+import {PaginationComponent} from "../features/pagination/Pagination";
+import {BackButton} from "../features/BackBtn/BackBtn";
+import {SearchInput} from "../features/search/SearchInput";
+import {SortButtonId} from "../features/sortBtn/SortBtnId";
+import {SortButtonFname} from "../features/sortBtn/SortBtnFname";
 
 import './data.css';
-
-
 
 export default function SmallData() {
     const location = useLocation();
@@ -24,7 +22,6 @@ export default function SmallData() {
 
     const handlePagination = (e, p) => {
         setPage(p)
-        console.log(e, p)
     }
     const compareFirstNameAscending = (a, b) => {
         if (a.firstName < b.firstName) {
@@ -83,35 +80,15 @@ export default function SmallData() {
 
     return (
         <>
-            <div className='input_search'>
-                <input
-                    value={searchTerm}
-                    autoFocus
-                    type='text'
-                    placeholder='search'
-                    onChange={(e) => setSearchTerm(e.target.value.trim())}
-                />
-            </div>
-            <Link to="/"><img src={back}/> back home</Link>
+            <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <BackButton/>
             <table className="table">
                 <thead>
                 <tr>
-                    <th>Id {isHiddenId ? (<img onClick={() => {
-                            sortByIdAscending();
-                        }} src={sortUp}/>)
-                        :
-                        (<img onClick={() => {
-                            sortByIdDescending();
-                        }} src={sortDown}/>)}
-                    </th>
-                    <th>FirstName {isHiddenFname ? (<img onClick={() => {
-                        sortByFirstNameAscending();
-                    }} src={sortUp}/>)
-                        :
-                        (<img onClick={() => {
-                            sortByFirstNameDescending();
-                        }} src={sortDown}/>)}
-                    </th>
+                    <SortButtonId isHiddenId={isHiddenId} sortByIdDescending={sortByIdDescending}
+                                  sortByIdAscending={sortByIdAscending}/>
+                    <SortButtonFname isHiddenFname={isHiddenFname} sortByFirstNameDescending={sortByFirstNameDescending}
+                                     sortByFirstNameAscending={sortByFirstNameAscending}/>
                     <th>LastName</th>
                     <th>Email</th>
                     <th>Phone</th>
@@ -133,11 +110,8 @@ export default function SmallData() {
                     </tr>))}
                 </tbody>
             </table>
-            {/*<h3>Current page {page}</h3>*/}
             <div className='input_pagination'>
-                <Stack>
-                    <Pagination count={10} color="primary" onChange={handlePagination}/>
-                </Stack>
+                <PaginationComponent handlePagination={handlePagination}/>
             </div>
         </>
     );
