@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Test-table-with-Api/static/css/main.f5d9e125.css",
+    "main.js": "/Test-table-with-Api/static/js/main.1f483440.js",
+    "index.html": "/Test-table-with-Api/index.html",
+    "main.f5d9e125.css.map": "/Test-table-with-Api/static/css/main.f5d9e125.css.map",
+    "main.1f483440.js.map": "/Test-table-with-Api/static/js/main.1f483440.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5d9e125.css",
+    "static/js/main.1f483440.js"
+  ]
+}
