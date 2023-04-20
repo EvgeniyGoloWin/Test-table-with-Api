@@ -9,7 +9,7 @@ import {SortButtonFname} from "../features/sortBtn/SortBtnFname";
 
 import './data.css';
 
-export default function SmallData() {
+export default function Data() {
     const location = useLocation();
     const [isHiddenId, setIsHiddenId] = useState(false);
     const [isHiddenFname, setIsHiddenFname] = useState(false);

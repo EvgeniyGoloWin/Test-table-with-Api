@@ -2,8 +2,7 @@ import React from "react";
 import { createBrowserRouter } from 'react-router-dom';
 
 import { Home } from '../../pages/Home';
-import SmallData from '../../pages/SmallData';
-import {BigData} from "../../pages/BigData";
+import Data from '../../pages/Data';
 
 export const router = createBrowserRouter([
     {
@@ -12,10 +11,10 @@ export const router = createBrowserRouter([
     },
     {
         path: '/small-data',
-        element: <SmallData />,
+        element: <Data />,
     },
     {
         path: '/big-data',
-        element: <BigData />,
+        element: <Data />,
     }
 ]);

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import SmallData from "./SmallData";
-import {BigData} from "./BigData";
+import Data from "./Data";
 
 import './home.css';
 
@@ -21,8 +20,8 @@ export const Home = () => {
                     <Link to="/big-data" onClick={() => setSelectedData('big')}>Big DATA</Link>
                 </div>
             </nav>
-            {selectedData === 'small' && <SmallData/>}
-            {selectedData === 'big' && <BigData/>}
+            {selectedData === 'small' && <Data/>}
+            {selectedData === 'big' && <Data/>}
         </div>
     );
 };
