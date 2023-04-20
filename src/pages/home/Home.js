@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import Data from "./Data";
+import Data from "../data/Data";
 
 import './home.css';
 

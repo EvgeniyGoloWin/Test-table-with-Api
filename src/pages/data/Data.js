@@ -1,13 +1,14 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useLocation} from 'react-router-dom';
-import {PaginationComponent} from "../features/pagination/Pagination";
-import {BackButton} from "../features/BackBtn/BackBtn";
-import {SearchInput} from "../features/search/SearchInput";
-import {SortButtonId} from "../features/sortBtn/SortBtnId";
-import {SortButtonFname} from "../features/sortBtn/SortBtnFname";
+import {PaginationComponent} from "../../features/pagination/Pagination";
+import {BackButton} from "../../features/backBtn/BackBtn";
+import {SearchInput} from "../../features/search/SearchInput";
+import {SortButtonId} from "../../features/sortBtn/SortBtnId";
+import {SortButtonFname} from "../../features/sortBtn/SortBtnFname";
 
 import './data.css';
+import {DATA_URL} from "../../constants/url";
 
 export default function Data() {
     const location = useLocation();
