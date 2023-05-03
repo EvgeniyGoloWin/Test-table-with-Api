@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Sort} from '../sortBtn/Sort';
-import {SearchInput} from "../search/SearchInput";
+import {Sort} from '../../../features/sortBtn/Sort';
+import {SearchInput} from "../../../features/search/SearchInput";
+import {List} from "./tableList/List";
 
 export const Table = ({
                    data,
@@ -47,27 +48,7 @@ export const Table = ({
                 <th>Address</th>
             </tr>
             </thead>
-            <tbody>
-            {data
-                .filter((item) => item.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        item.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        item.phone.toLowerCase().includes(searchTerm.toLowerCase())
-                )
-                .map((item) => (
-                    <tr className="item_table" key={item.id + item.firstName}>
-                        <td className="cell">{item.id}</td>
-                        <td className="cell">{item.firstName}</td>
-                        <td className="cell">{item.lastName}</td>
-                        <td className="cell">{item.email}</td>
-                        <td className="cell">{item.phone}</td>
-                        <td className="cell">
-                            {item.address.streetAddress}, {item.address.city}, {item.address.state},{" "}
-                            {item.address.zip}
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
+            <List data={data} setData={setData} searchTerm={searchTerm}/>
         </table>
         </>
     );
