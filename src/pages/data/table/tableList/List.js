@@ -1,7 +1,7 @@
 import React from 'react';
 import {Item} from "../tableItem/Item";
 
-export const List = ({ data, setData, searchTerm }) => {
+export const List = ({ data, searchTerm }) => {
     return (
         <tbody>
         {data
