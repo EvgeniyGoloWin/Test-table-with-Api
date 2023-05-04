@@ -2,7 +2,7 @@ import React from 'react';
 
 export const Item = ({ item }) => {
     return (
-        <tr className="item_table" key={item.id + item.firstName}>
+        <tr className="item_table">
             <td className="cell">{item.id}</td>
             <td className="cell">{item.firstName}</td>
             <td className="cell">{item.lastName}</td>
