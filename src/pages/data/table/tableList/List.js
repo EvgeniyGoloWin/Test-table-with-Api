@@ -11,7 +11,7 @@ export const List = ({ data, searchTerm }) => {
                 item.phone.toLowerCase().includes(searchTerm.toLowerCase())
             )
             .map((item) => (
-                <Item item={item}  key={item.id}/>
+                <Item item={item}  key={item.id + item.firstName}/>
             ))}
         </tbody>
     );

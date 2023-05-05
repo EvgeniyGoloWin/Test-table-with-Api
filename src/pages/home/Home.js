@@ -9,7 +9,7 @@ export const Home = () => {
             <h2> Choose your data</h2>
             <nav>
                 <div className='link'>
-                    <Link to="/small-data"  value="small">Small DATA</Link>
+                    <Link to="/small-data" value="small">Small DATA</Link>
                     <Link to="/big-data" value="big">Big DATA</Link>
                 </div>
             </nav>

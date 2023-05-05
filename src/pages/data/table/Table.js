@@ -8,6 +8,7 @@ export const Table = ({
                    setData
                }) => {
     const [searchTerm, setSearchTerm] = useState('');
+    console.log(data)
 
     return (<>
         <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
