@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-export const PaginationComponent = ({ handlePagination }) => {
+export const PaginationComponent = ({handlePagination}) => {
+
     return (
         <div className='input_pagination'>
             <Stack>
