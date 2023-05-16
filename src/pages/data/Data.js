@@ -4,7 +4,7 @@ import { BackButton } from "../../features/backBtn/BackBtn";
 import { Table } from "./table/Table";
 import { useLocation } from "react-router-dom";
 import { getUrl} from "../../helpers";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { fetchData} from "../../store/slice/dataSlice";
 
 import "./data.css";
@@ -26,7 +26,7 @@ export default function Data() {
     return (
         <>
             <BackButton />
-            <Table />
+            <Table/>
             <div className="input_pagination">
                 <PaginationComponent handlePagination={handlePagination} />
             </div>
