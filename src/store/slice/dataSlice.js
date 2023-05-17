@@ -1,4 +1,4 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchData = createAsyncThunk(
@@ -13,23 +13,27 @@ const initialState = {
     data: [],
     isLoading: false,
     error: null,
-}
+    searchTerm: '',
+};
 
 export const dataSlice = createSlice({
     name: "data",
     initialState,
     reducers: {
-        toggleSortDirection: (state, {payload}) => {
+        toggleSortDirection: (state, { payload }) => {
             const compareValues = (a, b) => {
                 if (a[payload.label] < b[payload.label]) {
                     return payload.isAscending ? -1 : 1;
                 }
                 if (a[payload.label] > b[payload.label]) {
-                    return payload.isAscending  ? 1 : -1;
+                    return payload.isAscending ? 1 : -1;
                 }
                 return 0;
             };
-            state.data = [...state.data].sort(compareValues)
+            state.data = [...state.data].sort(compareValues);
+        },
+        setSearchTerm: (state, action) => {
+            state.searchTerm = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -40,7 +44,6 @@ export const dataSlice = createSlice({
             .addCase(fetchData.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
-                console.log(action.payload)
             })
             .addCase(fetchData.rejected, (state, action) => {
                 state.isLoading = false;
@@ -48,5 +51,6 @@ export const dataSlice = createSlice({
             });
     },
 });
-export const {toggleSortDirection} = dataSlice.actions;
+
+export const { toggleSortDirection, setSearchTerm } = dataSlice.actions;
 export default dataSlice.reducer;

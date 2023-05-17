@@ -26,7 +26,7 @@ export default function Data() {
     return (
         <>
             <BackButton />
-            <Table/>
+            <Table />
             <div className="input_pagination">
                 <PaginationComponent handlePagination={handlePagination} />
             </div>

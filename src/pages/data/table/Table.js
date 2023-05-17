@@ -1,45 +1,45 @@
-import React, {useState} from 'react';
-import {Sort} from '../../../features/sortBtn/Sort';
-import {SearchInput} from "../../../features/search/SearchInput";
-import {List} from "./tableList/List";
-import {useSelector} from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Sort } from '../../../features/sortBtn/Sort';
+import { List } from "./tableList/List";
+import { SearchInput } from "../../../features/search/SearchInput";
+import {setSearchTerm} from "../../../store/slice/dataSlice";
 
 export const Table = () => {
     const data = useSelector((state) => state.data.data);
-    const [searchTerm, setSearchTerm] = useState('');
+    const searchTerm = useSelector((state) => state.search);
+    const dispatch = useDispatch();
 
-    return (<>
-            <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+    const handleSearchTermChange = (value) => {
+        dispatch(setSearchTerm(value));
+    };
+
+    return (
+        <>
+            <SearchInput searchTerm={searchTerm} setSearchTerm={handleSearchTermChange} />
             <table className="table">
                 <thead>
                 <tr>
-                    <th><Sort
-                        label='id'
-                        text='Id'
-                />
-                </th>
-                <th><Sort
-                    label='firstName'
-                    text='FirstName'
-                /></th>
-                <th><Sort
-                    label='lastName'
-                    text='LastName'
-                /></th>
-                <th><Sort
-                    label='email'
-                    text='Email'
-                /></th>
-                <th><Sort
-                    label='phone'
-                    text='Phone'
-                /></th>
-                <th>Address</th>
-            </tr>
-            </thead>
-            <List data={data} searchTerm={searchTerm}/>
-        </table>
+                    <th>
+                        <Sort label='id' text='Id' />
+                    </th>
+                    <th>
+                        <Sort label='firstName' text='FirstName' />
+                    </th>
+                    <th>
+                        <Sort label='lastName' text='LastName' />
+                    </th>
+                    <th>
+                        <Sort label='email' text='Email' />
+                    </th>
+                    <th>
+                        <Sort label='phone' text='Phone' />
+                    </th>
+                    <th>Address</th>
+                </tr>
+                </thead>
+                <List data={data} searchTerm={searchTerm} />
+            </table>
         </>
     );
 };
-

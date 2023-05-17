@@ -1,16 +1,17 @@
 import React from 'react';
 import {Item} from "../tableItem/Item";
+import {useDispatch, useSelector} from "react-redux";
 
-export const List = ({ data, searchTerm }) => {
+export const List = ({ data }) => {
+    const searchTerm = useSelector((state) => state.data.searchTerm);
+    console.log(data)
     return (
         <tbody>
         {data
-            .filter((item) =>
-                item.id.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
-                item.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                item.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                item.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                item.phone.toLowerCase().includes(searchTerm.toLowerCase())
+            .filter((item) => item.firstName.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+                item.lastName.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+                item.email.toLowerCase().includes(searchTerm?.toLowerCase()) ||
+                item.phone.toLowerCase().includes(searchTerm?.toLowerCase())
             )
             .map((item) => (
                 <Item item={item}  key={item.id + item.firstName}/>
