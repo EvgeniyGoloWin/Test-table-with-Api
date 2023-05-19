@@ -9,7 +9,6 @@ import { fetchData} from "../../store/slice/dataSlice";
 
 import "./data.css";
 
-
 export default function Data() {
     const [page, setPage] = useState(1);
     const dispatch = useDispatch();

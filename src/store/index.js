@@ -1,11 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit";
 import dataReducer from "../store/slice/dataSlice";
 
-const store = configureStore({
+const index = configureStore({
     reducer: {
         data: dataReducer,
     },
 });
 
-export default store;
+export default index;
 

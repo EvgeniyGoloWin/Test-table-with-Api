@@ -6,17 +6,18 @@ import { SearchInput } from "../../../features/search/SearchInput";
 import {setSearchTerm} from "../../../store/slice/dataSlice";
 
 export const Table = () => {
+
     const data = useSelector((state) => state.data.data);
-    const searchTerm = useSelector((state) => state.search);
+    const searchTerm = useSelector((state) => state.data.searchTerm);
     const dispatch = useDispatch();
 
-    const handleSearchTermChange = (value) => {
-        dispatch(setSearchTerm(value));
+    const handleSearchTermChange = (e) => {
+        dispatch(setSearchTerm(e.target.value.trim()));
     };
 
     return (
         <>
-            <SearchInput searchTerm={searchTerm} setSearchTerm={handleSearchTermChange} />
+            <SearchInput searchTerm={searchTerm} handleSearchTermChange={handleSearchTermChange} />
             <table className="table">
                 <thead>
                 <tr>

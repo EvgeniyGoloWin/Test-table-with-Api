@@ -1,20 +1,11 @@
 import React from "react";
 import { createBrowserRouter } from 'react-router-dom';
+import {bigDataRoute, homeRoute, smallDataRoute} from "../../constants";
 
-import { Home } from '../../pages/home/Home';
-import Data from '../../pages/data/Data';
+const routes = [
+    homeRoute,
+    smallDataRoute,
+    bigDataRoute,
+];
 
-export const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Home />,
-    },
-    {
-        path: '/small-data',
-        element: <Data />,
-    },
-    {
-        path: '/big-data',
-        element: <Data />,
-    }
-]);
+export const router = createBrowserRouter(routes);

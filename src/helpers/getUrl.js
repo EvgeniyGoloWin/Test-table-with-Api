@@ -1,4 +1,4 @@
-import {BASE_URL, DATA_PARAMS, DEFAULT_DATA_AMOUNT_BIG, DEFAULT_DATA_AMOUNT_SMALL} from "../constants/Constants";
+import {BASE_URL, DATA_PARAMS, DEFAULT_DATA_AMOUNT_BIG, DEFAULT_DATA_AMOUNT_SMALL} from "../constants";
 
 export function getUrl(location) {
     const CHOOSE_DATA = location.pathname === '/big-data' ? DEFAULT_DATA_AMOUNT_BIG : DEFAULT_DATA_AMOUNT_SMALL;

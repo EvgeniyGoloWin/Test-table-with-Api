@@ -1,10 +1,9 @@
 import React from 'react';
 import {Item} from "../tableItem/Item";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 
 export const List = ({ data }) => {
     const searchTerm = useSelector((state) => state.data.searchTerm);
-    console.log(data)
     return (
         <tbody>
         {data
